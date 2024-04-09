@@ -6,39 +6,74 @@
     <title>University of Oregon Mapping</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <!--    Include the reference to the Mapbox JavaScript here in the <head> of the page    -->
-    
-
-
-          
-    <!--    Include the reference to the Mapbox CSS here in the <head> of the page    -->
-    
-
+         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+    <!--    Include the reference to the Mapbox CSS here in between <head>...</head>, in the "head" of the page    -->
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
     <style>
-        /* Insert the CSS code here between the <style> tags */
-        
+       
+        body { margin:0; padding:0; }
+     #map { position:absolute; top:0; bottom:0; width:100%; height:100% }
+          #title { z-index: 9999; 
+         background-color:skyblue; 
+         opacity: 80%; 
+         text-align: center 
+     }
 
 
     </style>
-  </head>
+  </head> 
 
   <body>
-    <!--  Insert the map div here in the <body> of the page  -->
-   
-    <!--  Insert the tile div here (part V) -->
+     <div id='map'></div>
+      
+          <div id='title'>
+     		<h1>My Map of Portland</h1>
+     		<h2>By: Paige Nearman</h2>
+              
+ 	</div>
+      
 
     <script>
-        // Insert the JavaScript within the <script> tags, within the body   
+        // Insert the JavaScript within the <script> tags, within the body  
+        mapboxgl.accessToken = 'pk.eyJ1IjoicG5lYXJtYW4iLCJhIjoiY2x1c29pdW1yMDFwMTJqcHQwNW84a2c0dSJ9.aTyPQrCTO8AN-huNsTwojQ'; //  Put your access token between the single quotes.
         // Start with the Mapbox access token here
+         var map = new mapboxgl.Map({
+     container: 'map', // id of a div on your page, where the map will be inserted
+     style: 'mapbox://styles/pnearman/clusr7qqe000s01rd1hjx4zt3', // stylesheet location
+     center: [-122.6788, 45.5212], // starting position [lng, lat] eg. [-122.6788, 45.5212]
+     zoom: 11 // starting zoom 
+ });
+          var marker = new mapboxgl.Marker()
+   .setLngLat([-122.99, 45.6]) // starting position [lng, lat] 
+   .addTo(map);
+         var marker = new mapboxgl.Marker({color:'green'})
+   .setLngLat([-122.6788, 45.5212]) // starting position [lng, lat] 
+   .addTo(map);
+         var marker2 = new mapboxgl.Marker({color:'green'})
+   .setLngLat([-122.69, 45.55]) // starting position [lng, lat] 
+   .addTo(map);
  
    
         // Then initialize the map here
    
-    
-
+    var popup = new mapboxgl.Popup({ offset: 25 })
+     .setHTML('Hello World. Welcome to Portland!');
+    var marker = new mapboxgl.Marker()
+     .setLngLat([-122.6788, 45.5212])
+     .setPopup(popup) //add the popup with the variable name 'popup' to the marker 
+     .addTo(map); // add the open marker to the map
         // Add popup markers here  (part IV)
-        
+     var popup_layer = new mapboxgl.Popup({closeOnClick: true}) 
+     .setLngLat([-122.64, 45.5]) //popup coordinates
+     .setHTML('<h1>Hi Portland!</h1>') //popup text
+     .addTo(map); //add this popup to the map!
         // Add any other variables such as markers here (part III)
-
+ var popup_layer_voodoo = new mapboxgl.Popup({
+       closeOnClick: true, anchor: 'top-left'
+     })
+     .setLngLat([-122.70895, 45.52382])
+     .setHTML('<a href="https://japanesegarden.org/">Portland Japanese Gardens</a>')
+     .addTo(map);
         // Add optional advanced "On load" function here
         
     </script>
