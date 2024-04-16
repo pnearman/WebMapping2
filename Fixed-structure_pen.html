@@ -59,16 +59,32 @@
        center: [-122.66255, 43.64712], // starting position [lng, lat] eg. [-122.6788, 45.5212]
        zoom: 14 // starting zoom 
    });
+		
+
+            // 2.3 Add any other variables (such as popups and markers) to the first map
+			 var popup1 = new mapboxgl.Popup()
+         .setText('This is Dexter Resevoir.');
+
+         var marker = new mapboxgl.Marker({color:'red'})
+           .setLngLat([-122.80966, 43.92078]) // starting position [lng, lat] 
+           .setPopup(popup1) //add the popup to the marker 
+           .addTo(map); // id it to the map with the ID *map2*
+   
 		 var popup2 = new mapboxgl.Popup()
          .setText('This is Triangle Lake.');
 
-         var marker2 = new mapboxgl.Marker({color:'blue'})
+         var marker = new mapboxgl.Marker({color:'red'})
            .setLngLat([-123.58008, 44.17019]) // starting position [lng, lat] 
            .setPopup(popup2) //add the popup to the marker 
            .addTo(map2); // id it to the map with the ID *map2*
+		  
+		  var popup3 = new mapboxgl.Popup()
+         .setText('This is Brice Creek.');
 
-            // 2.3 Add any other variables (such as popups and markers) to the first map
-
+         var marker = new mapboxgl.Marker({color:'red'})
+           .setLngLat([-122.66255, 43.64712]) // starting position [lng, lat] 
+           .setPopup(popup3) //add the popup to the marker 
+           .addTo(map3); // id it to the map with the ID *map2
 
             // 2.4 Add arguments to disable the map interactivity here
             // Disable drag and zoom handlers.
